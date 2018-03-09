@@ -1,0 +1,102 @@
+:root {
+    --section--small: 170px;
+    --section--medium: 225px;
+    --section--large: 250px;
+    --section--big: 300px;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+}
+
+html {
+    font-size: 16px;
+}
+
+/* ETIQUETAS */
+
+body {
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 1rem;
+    text-align: center;
+}
+
+h1,
+h2 {
+    margin: 25px 0;
+    font-size: 1.2rem;
+}
+
+p {
+    text-align: justify;
+}
+
+/* GRID */
+
+.main-grid {
+    display: grid;
+    grid-template-rows: 50px var(--section--small) var(--section--big) repeat(3, var(--section--large)) var(--section--medium) 50px;
+}
+
+.wrapper-grid {
+    display: grid;
+    grid-template-columns: [full-start] minmax(1em, 1fr) [main-start] minmax(0, 80em)[main-end] minmax(1em, 1fr) [full-end];
+}
+
+.wrapper-grid > div {
+    grid-column: 2/3;
+}
+
+.grid-two-cols {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    grid-gap: 10px;
+    align-items: center;
+}
+
+.grid-two-cols--gapx2 {
+    display: grid;
+    grid-template-columns: repeat(2, 50%);
+    grid-gap: 70px;
+    align-items: center;
+}
+
+.grid-three-cols {
+    display: grid;
+    grid-template-columns: repeat(3, 30%);
+    grid-gap: 5%;
+    align-items: center;
+}
+
+/* ESTRUCTURA */
+
+/* ESTILO ESTRUCTURA */
+
+header,
+footer {
+    background-color: #00A9FF;
+}
+
+.full-width-img {
+    background-image: url(https://source.unsplash.com/random/1366x300);
+    background-size: cover;
+}
+
+/* CLASES */
+
+.bg-color--primary {
+    background-color: #00C500;
+}
+
+.bg-color--secondary {
+    background-color: #D961ED;
+}
+
+/* IDs */
+
+#logo {
+    margin: 30px 0;
+}
+
+/* SELECTORES */

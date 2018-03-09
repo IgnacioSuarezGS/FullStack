@@ -1,0 +1,73 @@
+*{
+    margin:0;
+    box-sizing: border-box;
+}
+
+html {
+    font-size: 12px;
+}
+
+body {
+    font-family: Arial;
+    font-size: 1rem;
+    color: white;
+    font-weight: bold;
+    text-transform: uppercase;
+}
+
+header,
+aside,
+.content,
+.content-side,
+footer {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+
+.grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr) 15%;
+    grid-template-rows: 50px 150px 50px;
+    /* USANDO NAMED LINES QUE CORRESPONDEN CON LAS LINEAS DEL GRID */
+    /* grid-template-columns: [first-line] 1fr [second-line] 1fr [third-line] 1fr [fourth-line] 15% [fifth-line]; */
+    /* USANDO AREAS */
+    grid-template-areas: 
+        "header     header      sidebar"
+        "content    contentside     sidebar"
+        "footer     footer      sidebar";    
+    grid-gap: 4px;
+}
+
+header {
+    background-color: green;
+    /* grid-column: 1 / fourth-line; */
+    grid-area: header;
+    grid-row: 1;
+}
+
+aside {
+    background-color: yellow;
+    /* grid-row: 1 / span 5; */
+    grid-area: sidebar;
+}
+
+.content {
+    background-color: tomato;
+    /* grid-column: span 2;
+    grid-row: span 3; */
+    grid-area: content;
+}
+
+.content-side {
+    background-color: teal;
+    /* grid-row: span 3; */
+    grid-area: contentside;
+}
+
+footer {
+    background-color: skyblue;
+    /* grid-column: span 3; */
+    grid-area: footer;
+}

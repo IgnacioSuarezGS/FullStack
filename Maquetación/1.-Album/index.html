@@ -1,0 +1,311 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Album Example like bootstrap</title>
+    <link rel="stylesheet" href="assets/css/estructura.min.css">
+    <!-- [TODO] Crear nueva hoja de estilos "estilos.css" para hacer el ejercicio -->
+    <link rel="stylesheet" href="assets/css/main.css">
+
+    <!-- Fuentes -->
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet"> 
+
+</head>
+
+<body>
+    <!-- [TODO] 
+            Definir tamaño de fuente general a 13px y Arial con fallback 
+            Eliminar espaciados entre ventana del navegador y contenido. 
+    -->
+    <div class="grid">
+        <nav class="grid__item--fw">
+            <!-- [TODO]
+                1. Definir padding
+                2. Color de fondo #343a40
+                3. Texto en blanco
+            -->
+            <div class="logo">
+                <img src="assets/pictures/logo.svg" alt="logo">
+            </div>
+            <!-- [TODO] Añadir logo -->
+            <div class="menu">
+                <ul>
+                    <li>
+                        <a href="#">item 1</a>
+                        <a href="#">item 2</a>
+                        <a href="#">item 3</a>
+                        <a href="#">item 4</a>
+                        <a href="#">item 5</a>
+                    </li>
+                </ul> 
+            </div>
+        </nav>
+        <div class="hero">
+            <!-- [TODO] 
+                1. Indentar automáticamente la siguiente estructura 
+                2. Comprobar si la etiqueta h1 es correcta y aumentar tamaño a 1,5 veces el tamaño inicial
+                    a. El tipo de letra del h1 será "Open Sans"
+                3. Poner color de párrafo en azul
+                4. Enlaces tipo botón reutilizables. Definir clases correctamente
+                    4.1. Deben ir en línea
+                    4.2. El primer botón tendrá:
+                        a. Formato rectangular adaptable
+                        b. Esquinas redondeadas
+                        c. Definir tamaño de fuente adecuado
+                        d. Color de texto blanco.
+                        e. Fondo azul claro.
+                        f. Definir padding adecuado.
+                        g. Texto centrado
+                    4.3. El segundo será una variante del primero en color claro. 
+                5. Preparar estilos para futuros usos de etiquetas h adicionales (h2, h3, h4...)
+            -->
+            <div class="wrapper">
+                <h1>Album example</h1>
+                <p class="colorGrey">
+                    Something short and leading about the collection below—its contents, the creator, etc. Make it short and sweet, but not too
+                    short so folks don't simply skip over it entirely.
+                </p>
+                <a href="#" class="btn btnBlue">Main call to action</a>
+                <a href="#" class="btn btnGrey">Secondary action</a>
+            </div>
+        </div>
+        <div class="albums">
+            <div class="album">
+                <!-- [TODO] 
+                    1. Definir blanco de color de fondo a zona de texto
+                    2. Dar padding
+                    3. Poner borde redondeado de 3px y tono de gris que destaque 
+                    4. Crear diez elementos como este. 
+                        a. Usar emmet para crear la primera estructura a mano.
+                        b. Buscar atajo de teclado que duplique elementos con facilidad.
+                        shift+alt+arrowUp or shift+alt+arrowDown
+                -->
+                <div class="album__thumb">
+                    <!-- [TODO] insertar aquí fotografías aleatorias a diferentes tamaños -->
+                    <!-- URL: https://source.unsplash.com/random/200x300 -->
+                    <!-- Cambiar tamaños. No podrá variar el diseño -->
+                    <img src="https://source.unsplash.com/random/200x300" alt="fotoRandom">
+                </div>
+                <div class="album__desc">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Recusandae saepe deleniti modi facere voluptatum
+                    natus ut corporis mollitia reprehenderit nemo, quae at minima id incidunt reiciendis aperiam doloribus
+                    sit laudantium.
+                </div>
+                <div class="album__crud">
+                    <!-- [TODO] 
+                        1. Añadir "botón" View y Edit alineados a la izquierda 
+                        2. Estos botones deben ir pegados dando apariencia de uno solo
+                           El conjunto tendrá esquinas redondeadas y una linea divisoria vertical
+                    -->
+                    <a href="#" class="btn btnLightBorder btnRadLeft">View</a>
+                    <a href="#" class="btn btnLightBorder btnRadRight">Edit</a>
+                </div>
+                <div class="album__mins">
+                    <!-- [TODO] Alineado a la derecha -->
+                    9 min
+                </div>
+            </div>
+            <div class="album">
+                <div class="album__thumb">
+                    <img src="https://source.unsplash.com/random/201x301" alt="fotoRandom">
+                </div>
+                <div class="album__desc">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Recusandae saepe deleniti modi facere voluptatum
+                    natus ut corporis mollitia reprehenderit nemo, quae at minima id incidunt reiciendis aperiam doloribus
+                    sit laudantium.
+                </div>
+                <div class="album__crud">
+                    <a href="#" class="btn btnLightBorder btnRadLeft">View</a>
+                    <a href="#" class="btn btnLightBorder btnRadRight">Edit</a>
+                </div>
+                <div class="album__mins">
+                    9 min
+                </div>
+            </div>
+            <div class="album">
+                <div class="album__thumb">
+                    <img src="https://source.unsplash.com/random/202x302" alt="fotoRandom">
+                </div>
+                <div class="album__desc">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Recusandae saepe deleniti modi facere voluptatum
+                    natus ut corporis mollitia reprehenderit nemo, quae at minima id incidunt reiciendis aperiam doloribus
+                    sit laudantium.
+                </div>
+                <div class="album__crud">
+                    <a href="#" class="btn btnLightBorder btnRadLeft">View</a>
+                    <a href="#" class="btn btnLightBorder btnRadRight">Edit</a>
+                </div>
+                <div class="album__mins">
+                    9 min
+                </div>
+            </div>
+            <div class="album">
+                <div class="album__thumb">
+                    <img src="https://source.unsplash.com/random/203x303" alt="fotoRandom">
+                </div>
+                <div class="album__desc">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Recusandae saepe deleniti modi facere voluptatum
+                    natus ut corporis mollitia reprehenderit nemo, quae at minima id incidunt reiciendis aperiam doloribus
+                    sit laudantium.
+                </div>
+                <div class="album__crud">
+                    <a href="#" class="btn btnLightBorder btnRadLeft">View</a>
+                    <a href="#" class="btn btnLightBorder btnRadRight">Edit</a>
+                </div>
+                <div class="album__mins">
+                    9 min
+                </div>
+            </div>
+            <div class="album">
+                <div class="album__thumb">
+                    <img src="https://source.unsplash.com/random/204x304" alt="fotoRandom">
+                </div>
+                <div class="album__desc">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Recusandae saepe deleniti modi facere voluptatum
+                    natus ut corporis mollitia reprehenderit nemo, quae at minima id incidunt reiciendis aperiam doloribus
+                    sit laudantium.
+                </div>
+                <div class="album__crud">
+                    <a href="#" class="btn btnLightBorder btnRadLeft">View</a>
+                    <a href="#" class="btn btnLightBorder btnRadRight">Edit</a>
+                </div>
+                <div class="album__mins">
+                    9 min
+                </div>
+            </div>
+            <div class="album">
+                <div class="album__thumb">
+                    <img src="https://source.unsplash.com/random/205x305" alt="fotoRandom">
+                </div>
+                <div class="album__desc">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Recusandae saepe deleniti modi facere voluptatum
+                    natus ut corporis mollitia reprehenderit nemo, quae at minima id incidunt reiciendis aperiam doloribus
+                    sit laudantium.
+                </div>
+                <div class="album__crud">
+                    <a href="#" class="btn btnLightBorder btnRadLeft">View</a>
+                    <a href="#" class="btn btnLightBorder btnRadRight">Edit</a>
+                </div>
+                <div class="album__mins">
+                    9 min
+                </div>
+            </div>
+            <div class="album">
+                <div class="album__thumb">
+                    <img src="https://source.unsplash.com/random/206x306" alt="fotoRandom">
+                </div>
+                <div class="album__desc">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Recusandae saepe deleniti modi facere voluptatum
+                    natus ut corporis mollitia reprehenderit nemo, quae at minima id incidunt reiciendis aperiam doloribus
+                    sit laudantium.
+                </div>
+                <div class="album__crud">
+                    <a href="#" class="btn btnLightBorder btnRadLeft">View</a>
+                    <a href="#" class="btn btnLightBorder btnRadRight">Edit</a>
+                </div>
+                <div class="album__mins">
+                    9 min
+                </div>
+            </div>
+            <div class="album">
+                <div class="album__thumb">
+                    <img src="https://source.unsplash.com/random/207x307" alt="fotoRandom">
+                </div>
+                <div class="album__desc">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Recusandae saepe deleniti modi facere voluptatum
+                    natus ut corporis mollitia reprehenderit nemo, quae at minima id incidunt reiciendis aperiam doloribus
+                    sit laudantium.
+                </div>
+                <div class="album__crud">
+                    <a href="#" class="btn btnLightBorder btnRadLeft">View</a>
+                    <a href="#" class="btn btnLightBorder btnRadRight">Edit</a>
+                </div>
+                <div class="album__mins">
+                    9 min
+                </div>
+            </div>
+            <div class="album">
+                <div class="album__thumb">
+                    <img src="https://source.unsplash.com/random/208x308" alt="fotoRandom">
+                </div>
+                <div class="album__desc">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Recusandae saepe deleniti modi facere voluptatum
+                    natus ut corporis mollitia reprehenderit nemo, quae at minima id incidunt reiciendis aperiam doloribus
+                    sit laudantium.
+                </div>
+                <div class="album__crud">
+                    <a href="#" class="btn btnLightBorder btnRadLeft">View</a>
+                    <a href="#" class="btn btnLightBorder btnRadRight">Edit</a>
+                </div>
+                <div class="album__mins">
+                    9 min
+                </div>
+            </div>
+            <div class="album">
+                <div class="album__thumb">
+                    <img src="https://source.unsplash.com/random/209x309" alt="fotoRandom">
+                </div>
+                <div class="album__desc">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Recusandae saepe deleniti modi facere voluptatum
+                    natus ut corporis mollitia reprehenderit nemo, quae at minima id incidunt reiciendis aperiam doloribus
+                    sit laudantium.
+                </div>
+                <div class="album__crud">
+                    <a href="#" class="btn btnLightBorder btnRadLeft">View</a>
+                    <a href="#" class="btn btnLightBorder btnRadRight">Edit</a>
+                </div>
+                <div class="album__mins">
+                    9 min
+                </div>
+            </div>
+            <div class="album">
+                <div class="album__thumb">
+                    <img src="https://source.unsplash.com/random/210x310" alt="fotoRandom">
+                </div>
+                <div class="album__desc">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Recusandae saepe deleniti modi facere voluptatum
+                    natus ut corporis mollitia reprehenderit nemo, quae at minima id incidunt reiciendis aperiam doloribus
+                    sit laudantium.
+                </div>
+                <div class="album__crud">
+                    <a href="#" class="btn btnLightBorder btnRadLeft">View</a>
+                    <a href="#" class="btn btnLightBorder btnRadRight">Edit</a>
+                </div>
+                <div class="album__mins">
+                    9 min
+                </div>
+            </div>
+            <div class="album">
+                <div class="album__thumb">
+                    <img src="https://source.unsplash.com/random/211x311" alt="fotoRandom">
+                </div>
+                <div class="album__desc">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Recusandae saepe deleniti modi facere voluptatum
+                    natus ut corporis mollitia reprehenderit nemo, quae at minima id incidunt reiciendis aperiam doloribus
+                    sit laudantium.
+                </div>
+                <div class="album__crud">
+                    <a href="#" class="btn btnLightBorder btnRadLeft">View</a>
+                    <a href="#" class="btn btnLightBorder btnRadRight">Edit</a>
+                </div>
+                <div class="album__mins">
+                    9 min
+                </div>
+            </div>
+
+        </div>
+        <footer>
+            <!-- [TODO]
+                1. Crear menú horizontal estándar haciendo uso de ul/li/a
+                2. El menú se debe crear usando Emmet, con texto aleatorio y diferente y enlace a # en una sola línea de Emmet 
+                3. Cambiar color de fondo al footer.
+                4. Duplicar todo el menú (no copy paste). 
+                a. Seleccionarlo entero.
+                b. Moverlo hacia arriba y dejarlo dentro de div.menu
+            -->
+            <!-- ul>li>a*5[href="#"]>{item $}  -->
+                <ul>
+                    <li>
+                        <a href="#">item 1</a>
+                        <a href="#">item 2</a>
+                        <a href="#">item 3</a>
+                        <a href="#">item 4</a>
+                        <a href="#">item 5</a>
+                    </li>
+                </ul>       
+        </footer>
+    </div>
+</body>
+
+</html>

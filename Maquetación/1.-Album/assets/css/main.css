@@ -1,0 +1,155 @@
+/* Etiquetas */
+
+* {
+    box-sizing: border-box;
+}
+
+html {
+    font-size: 13px;
+}
+
+body {
+    font-size: 1rem;
+    font-family: Arial, Helvetica, sans-serif;
+    margin: 0;
+}
+
+h1,
+h2,
+h3,
+h4{
+    font-size: 1.5rem;
+    font-family: "Open Sans";
+}
+
+h1 {
+    font-size: 1.5rem;
+    
+}
+
+a {
+    color:white;
+    text-decoration: none;
+}
+
+footer {
+    background-color: grey;
+}
+
+/* Clases */
+
+.grid__item--fw {
+    padding: 0 10px;
+    background-color: #343a40;
+    color: white;
+}
+
+.hero {
+    justify-content: center;
+}
+
+.colorGrey {
+    color: #66717B;
+}
+
+.btn {
+    display: inline-block;
+    min-width: 60px;
+    border-radius: 5px;
+    font-size: 1.2rem;
+    color: white;
+    padding: 5px 10px;
+    text-align: center;
+}
+
+.btnBlue {
+    background-color: #027DFD;
+}
+
+.btnGrey {
+    background-color: #6C747D;
+}
+
+.btnLightBorder {
+    border: 1px solid black;
+}
+
+.btnRadLeft {
+    border-radius: 5px 0 0 5px;
+}
+
+.btnRadRight {
+    border-radius: 0 5px 5px 0;
+}
+
+.albums {
+    padding: 5%;
+}
+
+.album {
+    background-color: white;
+    border-radius: 3px;
+    overflow: hidden;
+    padding-bottom: 3%;
+}
+
+.album__thumb {
+    overflow: hidden;
+}
+
+.album__desc {
+    padding: 10% 5%;
+    line-height: 1.5;
+}
+
+.album__crud {
+    padding-left: 10%;
+}
+
+.album__mins {
+    padding: 10%;
+    text-align: right;
+}
+
+/* IDs */
+
+/* Selectores */
+.hero p {
+    line-height: 1.5;
+    font-size: 1.2rem;
+}
+
+.hero .wrapper {
+    width: 80%;
+}
+
+.logo img {
+    height: 50px;
+    width: 50px;
+}
+
+.album .btn {
+    padding: 1%;
+    font-size: 1rem;
+    color: black;
+    margin-left: -6px;
+}
+
+.album__thumb img {
+    width: 100%;
+}
+
+ul li, ul li a {
+    display: inline-block;
+    height: 100%;
+}
+
+ul li a {
+    padding: 20px;
+}
+
+ul {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+}
