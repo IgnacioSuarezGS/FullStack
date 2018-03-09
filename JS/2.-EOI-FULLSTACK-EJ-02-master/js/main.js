@@ -130,10 +130,9 @@ function ejercicio03(email) {
     // alert("cliente: " + host + "\n" + "dominio: " + domain);
     // Match crea un array con las coincidencias
     var nDigits = mail.correo.match(/\d/g); // Expresión Regular que significa todos los dígitos, cuando termina en g se buscan varias apariciones
-    nDigits = validateNumbers(nDigits);
-    if (nDigits.length < 0) {
-        console.log(nDigits);
-    };
+    if(nDigits == null) {
+        nDigits = 0;
+    }
     if (0 === nDigits) {
         return `El correo ${mail.correo} pertenece al dominio ${domain} y tiene ${hostLength} caracteres sin contar el dominio ni el @. Además, el correo no contiene ningún número`
     } else {
