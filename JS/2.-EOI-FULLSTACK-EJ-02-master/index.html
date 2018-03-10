@@ -576,10 +576,10 @@
             }
 
 
-            showResults([{
+            showLastResults({
                 text: 'El resultado de la función es. </br>',
-                value: '<pre>' + result + '</pre>'
-            }], resultsZone)
+                value:  result
+            }, resultsZone)
         }
 
 
@@ -589,12 +589,20 @@
             results.forEach(function (result) {
                 if (result.value === false) {
                     resultString += '<p>' + result.text + '<b>' + 'false' + '</b></p>';
-                } else {
+                } else if (result.value === 0){
+                    resultString += '<p>' + result.text + '<b>' + '0' + '</b></p>';
+                }else {
                     resultString += '<p>' + result.text + '<b>' + (result.value ||  '') + '</b></p>';
                 }
             });
             zone.innerHTML = resultString;
 
+        }
+        function showLastResults(results, zone) {
+
+            var resultString = '';
+            zone.innerHTML = 'El resultado está en la consola esta vez';
+            console.log('Tu resultado ha sido : ' , results.value);
         }
     </script>
 </body>

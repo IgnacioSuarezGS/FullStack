@@ -36,7 +36,7 @@ function validateUser(user) {
     validateName(user.name, errors);
     validateMail(user.mail, errors);
     validateAge(user.age, errors);
-    console.log(errors);
+    return errors;
 }
 
 function validateName(name, errors) {
@@ -44,7 +44,7 @@ function validateName(name, errors) {
     if (nameLength < 5) {
         errors.push({
             code: 'sort-name',
-            text: 'El téxto debe tener al menos 5 caracteres'
+            text: 'El nombre debe tener al menos 5 caracteres'
         });
     } else if (nameLength > 60) {
         errors.push({
@@ -62,11 +62,52 @@ function validateName(name, errors) {
 }
 
 function validateMail(mail, errors) {
-    mail.charAt('@')
+    if (mail.length < 7) {
+        errors.push({
+            code: 'lt-seven',
+            text: 'No puedes tener un email con menos de 7 caracteres'
+        });
+    } else if (mail.length > 60) {
+        errors.push({
+            code: 'mt-60',
+            text: 'Tio no se que tan paranoico eres, pero eso son demasiadas letras para alguien normal'
+        });
+    }
+    let ats = 0;
+    for (let i = 0; i < mail.length; i++) {
+        if (mail.charAt(i) === "@") {
+            ats++;
+        }
+    }
+    if (ats > 1) {
+        errors.push({
+            code: 'mt-one-at',
+            text: 'No puedes poner tantas @'
+        });
+    } else if (ats == 1) {
+        let at = mail.indexOf("@");
+        if (mail.substring(0, at).length <= 0) {
+            errors.push({
+                code: 'email-not-started',
+                text: 'Tu correo debe tener un inicio'
+            });
+        }
+        if (mail.substring(at).length - 1 <= 0) {
+            errors.push({
+                code: 'email-not-finished',
+                text: 'No has indicado el nombre de tu proveedor de correo'
+            });
+        }
+    }
 }
 
 function validateAge(age, errors) {
-
+    if(age < 5 || age > 150) {
+        errors.push({
+            code: 'wrong-age',
+            text: 'La edad debe estar entre 5 y 150 tolete'
+        });
+    }
 }
 
 ////////////////////////////////////////
@@ -207,11 +248,19 @@ function ejercicio05(user) {
 
 
 function ejercicio06(user) {
-    console.log(user);
     var currentUser = normalizeUser(user);
-    console.log(currentUser);
-    var state = validateUser(currentUser);
-
+    var errors = validateUser(currentUser);
+    var isValid = true;
+    var result = {
+        valid: "",
+        errors: []
+    };
+    if (errors.length > 0) isValid = false;
+    result = {
+        valid: isValid,
+        errors: errors
+    }
+    return result;
 }
 
 
