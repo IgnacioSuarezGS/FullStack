@@ -102,7 +102,7 @@ function validateMail(mail, errors) {
 }
 
 function validateAge(age, errors) {
-    if(age < 5 || age > 150) {
+    if (age < 5 || age > 150) {
         errors.push({
             code: 'wrong-age',
             text: 'La edad debe estar entre 5 y 150 tolete'
@@ -247,16 +247,19 @@ function ejercicio05(user) {
 ////////////////////////////////////////
 
 
-function ejercicio06(user) {
+function ejercicio06(user, id) {
     var currentUser = normalizeUser(user);
     var errors = validateUser(currentUser);
     var isValid = true;
     var result = {
+        id: "notSet",
         valid: "",
         errors: []
     };
+    if (id == undefined) id = "notSet";
     if (errors.length > 0) isValid = false;
     result = {
+        id: id,
         valid: isValid,
         errors: errors
     }
@@ -275,7 +278,23 @@ function ejercicio06(user) {
 
 
 function ejercicio07(users) {
-    console.log(users);
+    var allUsers = [];
+    var result = {
+        items_inserted: 0,
+        ids: [],
+        with_errors: [],
+        users_stored: []
+    };
+
+    for (let i = 0; i < users.length; i++) {
+        allUsers.push(ejercicio06(users[i], i + 1));
+    };
+
+    result.items_inserted = allUsers.length;
+    result.ids = allUsers.map(user => user.id);
+    result.with_errors = allUsers.filter(user => user.valid == false);
+    result.users_stored = allUsers.filter(user => user.valid == true);
+    return result;
 }
 
 
