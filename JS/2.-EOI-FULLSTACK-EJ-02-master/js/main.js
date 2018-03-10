@@ -33,35 +33,40 @@ function validateNumbers(number) {
 function validateUser(user) {
     var isValid = true;
     var errors = [];
-    if (user.name.length < 5 && isValid === true) {
-        isValid = false;
-        errors.push({
-            code: '',
-            text: ''
-        });
-    } else if (user.name.length > 60 && isValid === true)
-        isValid = false;
-    errors.push({
-        code: '',
-        text: ''
-    });
-    var parametroBusqueda = "^[a-zñ]+[a-zñ\s]+[a-zñ]$";
-    content(user.name, parametroBusqueda);
-    // if () {}
-
-    //     { 
-    //         valid : true/false,
-    //         errors? : [
-    //        {
-    //                code : 'email_invalid_min_length'
-    //                text : 'El correo [correo] debe contener más de 7 caracteres.'
-    //        }, ...
-    //        ]
-    //    }
+    validateName(user.name, errors);
+    validateMail(user.mail, errors);
+    validateAge(user.age, errors);
+    console.log(errors);
 }
 
-function content(string, parametro) {
-    return string.indexOf(parametro)
+function validateName(name, errors) {
+    let nameLength = name.length;
+    if (nameLength < 5) {
+        errors.push({
+            code: 'sort-name',
+            text: 'El téxto debe tener al menos 5 caracteres'
+        });
+    } else if (nameLength > 60) {
+        errors.push({
+            code: 'large-name',
+            text: '¿Rejentas el Badulaque? ¿De dónde coño te sacaste el nombre ese de más de 60 caracteres?'
+        });
+    }
+    let arrayNumeros = name.match(/\d/);
+    if (arrayNumeros != null) {
+        errors.push({
+            code: 'numbers-in-name',
+            text: 'No puedes poner números en el nombre'
+        });
+    }
+}
+
+function validateMail(mail, errors) {
+    mail.charAt('@')
+}
+
+function validateAge(age, errors) {
+
 }
 
 ////////////////////////////////////////
@@ -130,7 +135,7 @@ function ejercicio03(email) {
     // alert("cliente: " + host + "\n" + "dominio: " + domain);
     // Match crea un array con las coincidencias
     var nDigits = mail.correo.match(/\d/g); // Expresión Regular que significa todos los dígitos, cuando termina en g se buscan varias apariciones
-    if(nDigits == null) {
+    if (nDigits == null) {
         nDigits = 0;
     }
     if (0 === nDigits) {
