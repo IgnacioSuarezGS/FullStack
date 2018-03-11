@@ -1,36 +1,17 @@
-let servidores = [
-    {
-        almacenan: '.mp4',
-        nodos: ['ordenador1','ordenador2','ordenador3']
-    },{
-        almacenan: '.mp3',
-        nodos: ['ordenador2','ordenador5']
-    },{
-        almacenan: '.json',
-        nodos: ['ordenador1','ordenador4','ordenador6']
-    },{
-        almacenan: '.png',
-        nodos: ['ordenador1', 'ordenador4']
-    },{
-        almacenan: '.avi',
-        nodos: ['ordenador1','ordenador7']
-    },
+let provincias = [
+    {nombre: 'Madrid', codigoPostal: '28223'},
+    {nombre: 'Albacete', codigoPostal: '02653'},
+    {nombre: 'Madrid', codigoPostal: '28223'},
+    {nombre: 'Las Palmas', codigoPostal: '35118'},
+    {nombre: 'Barcelona', codigoPostal: '08480'},
+    {nombre: 'Madrid', codigoPostal: '28001'},
+    {nombre: 'Barcelona', codigoPostal: '08480'},
 ];
 
-var nodos = servidores.filter(servidor => servidor.almacenan == '.mp4' || servidor.almacenan == ".png").map(nodo => nodo.nodos);
+console.log(provincias.map(provincia => provincia.codigoPostal));
 
-// var serverFinal = [];
-// console.log(nodos);
-// nodos.forEach(nodo => {
-//     nodo.forEach(server => {
-//         serverFinal.push(server);
-//     })
-// });
+var cp = provincias.map(provincia => provincia.codigoPostal);
 
-var serverFinal = _.flatten(nodos);
+var cpNoRepeat = _.uniq(cp);
 
-console.log(serverFinal);
-
-serverFinal = _.uniq(serverFinal);
-
-console.log(serverFinal);
+console.log(cpNoRepeat);
