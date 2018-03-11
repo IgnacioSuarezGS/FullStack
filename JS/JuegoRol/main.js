@@ -1,84 +1,84 @@
 var characters = ["orco", "mago", "humano", "elfo"];
 var currentStages = [];
 var situations = [{
-        texto: "1",
+        texto: "Entras en una cueva y te ataca una bandada de murciélagos",
         minimo_dado: getRandomInt(1, 12),
-        resultado_si_bien: "1BIEN",
-        puntos_si_gana: 0,
-        resultado_si_mal: "1MAL",
-        menos_vida_si_mal: 0
+        resultado_si_bien: "Consigues salir de la cueva y zafarte de ellos",
+        puntos_si_gana: 10,
+        resultado_si_mal: "Intentando escapar tropiezas y te caes al suelo",
+        menos_vida_si_mal: 10
     },
     {
-        texto: "2",
+        texto: "Pasando por un puente un troll te exige que pagues",
         minimo_dado: getRandomInt(1, 12),
-        resultado_si_bien: "2BIEN",
-        puntos_si_gana: 0,
-        resultado_si_mal: "2MAL",
-        menos_vida_si_mal: 0
+        resultado_si_bien: "Golpeas al troll con tu arma y te libras de él",
+        puntos_si_gana: 10,
+        resultado_si_mal: "Intentas golpearlo, pero fallas; a cambio te llevas una patada en el trasero",
+        menos_vida_si_mal: 5
     },
     {
-        texto: "3",
+        texto: "Te adentras en el bosque maldito y te atacan enredaderas gigantes",
         minimo_dado: getRandomInt(1, 12),
-        resultado_si_bien: "3BIEN",
-        puntos_si_gana: 0,
-        resultado_si_mal: "3MAL",
-        menos_vida_si_mal: 0
+        resultado_si_bien: "Te zafas con facilidad. ¡Por dios es solo un hierbajo!",
+        puntos_si_gana: 50,
+        resultado_si_mal: "Logras cortar la enredadera cuando estás demasiado alto y caes al suelo. ¡Ouch!",
+        menos_vida_si_mal: 35
     },
     {
-        texto: "4",
+        texto: "Llegas a un prado que se nubla de repente. Aparece un mago oscuro que te ataca con bolas de fuego.",
         minimo_dado: getRandomInt(1, 12),
-        resultado_si_bien: "4BIEN",
-        puntos_si_gana: 0,
-        resultado_si_mal: "4MAL",
-        menos_vida_si_mal: 0
+        resultado_si_bien: "Esquivas los ataques y al bloquear una bola de fuego rebota y mata al mago. ¡Umm huele a barbacoa!",
+        puntos_si_gana: 80,
+        resultado_si_mal: "¡Pero que torpe! El fuego te hace pupita",
+        menos_vida_si_mal: 45
     },
     {
-        texto: "5",
+        texto: "Sigues con tu camino cuando notas una gigantesca sombra encima. ¡Es un dragón!",
         minimo_dado: getRandomInt(1, 12),
-        resultado_si_bien: "5BIEN",
-        puntos_si_gana: 0,
-        resultado_si_mal: "5MAL",
-        menos_vida_si_mal: 0
+        resultado_si_bien: "Al intentar embestirte te agarras y subes sobre él. Lo hieres en el corazón y sigues con tu camino",
+        puntos_si_gana: 80,
+        resultado_si_mal: "Al intentar embestirte te agarras y subes sobre él. Te zarandea y te lanza a km. Eso te dolerá mañana",
+        menos_vida_si_mal: 50
     },
     {
-        texto: "6",
+        texto: "Paseando te topas con un hueco en la tierra, entras en él y te encuentras con que has invadido el mundo de los hombres topos, que te atacan en masa",
         minimo_dado: getRandomInt(1, 12),
-        resultado_si_bien: "6BIEN",
-        puntos_si_gana: 0,
-        resultado_si_mal: "6MAL",
-        menos_vida_si_mal: 0
+        resultado_si_bien: "Después de una ardua lucha consigues acabar con todos",
+        puntos_si_gana: 90,
+        resultado_si_mal: "Consigues escapar a duras penas",
+        menos_vida_si_mal: 85
     },
     {
-        texto: "7",
+        texto: "Anochece y te resguardas en una casa abandonada. Pronto empiezan a suceder cosas muy raras. Los fantasmas invaden la mansión",
         minimo_dado: getRandomInt(1, 12),
-        resultado_si_bien: "7BIEN",
-        puntos_si_gana: 0,
-        resultado_si_mal: "7MAL",
-        menos_vida_si_mal: 0
+        resultado_si_bien: "Te das cuenta de que son nos cachondos y que solo quieren fiesta; te unes a ellos toda la noche",
+        puntos_si_gana: 40,
+        resultado_si_mal: "Te lías a repartir tortas, aunque no les hagas nada; atraviesas a uno de ellos y te golpeas contra una pared",
+        menos_vida_si_mal: 20
     },
     {
-        texto: "8",
+        texto: "Llegas a un lago poco profundo con una piedra en el centro; te tumbas sobre ella y te das cuenta de que respira; se alza ante ti una colérica hidra",
         minimo_dado: getRandomInt(1, 12),
-        resultado_si_bien: "8BIEN",
-        puntos_si_gana: 0,
-        resultado_si_mal: "8MAL",
-        menos_vida_si_mal: 0
+        resultado_si_bien: "Con esfuerzo y paciencia consigues acabar con ella",
+        puntos_si_gana: 110,
+        resultado_si_mal: "La hidra es dura de pelar, solo consigues que tus heridas sean mayores",
+        menos_vida_si_mal: 80
     },
     {
-        texto: "9",
+        texto: "Te adentras por un campo estéril y oscuro y te encuentras una manada de lobos",
         minimo_dado: getRandomInt(1, 12),
-        resultado_si_bien: "9BIEN",
-        puntos_si_gana: 0,
-        resultado_si_mal: "9",
-        menos_vida_si_mal: 0
+        resultado_si_bien: "Te las apañas para educar a esa manada, ahora eres uno más. ¡Eres un crack!",
+        puntos_si_gana: 50,
+        resultado_si_mal: "Huyes campo a través y te llevas contigo ramas, hojas y espinas secas. Esas heridas te escocerán",
+        menos_vida_si_mal: 25
     },
     {
-        texto: "10",
+        texto: "Te encuentras en una gran explanada verde donde crees tener un poco de paz, tras de ti se levanta un titán dormido durante eones",
         minimo_dado: getRandomInt(1, 12),
-        resultado_si_bien: "10BIEN",
-        puntos_si_gana: 0,
-        resultado_si_mal: "10MAL",
-        menos_vida_si_mal: 0
+        resultado_si_bien: "Luchas como todo un guerrero feroz y enredas las piernas del titán; haciéndolo caer y clavándose su propia arma",
+        puntos_si_gana: 200,
+        resultado_si_mal: "Persiguiéndote el titán tropieza y cae hacia delante, cayendo encima de ti. ¡Pero que mala pata!",
+        menos_vida_si_mal: 99
     }
 
 ];
@@ -99,10 +99,10 @@ function newPlayer(player) {
 }
 
 function newCharacter(player) {
-    var newCharacter = prompt(`¿Qué quieres ser en tu viaje? ¿${characters}?`);
+    var newCharacter = prompt(`¿Qué quieres ser en tu viaje? ¿${characters}?\n\nPuntuación Máxima: ${maxScore.name} ${maxScore.points}`);
     if (characters.indexOf(newCharacter) >= 0) {
         player.type = newCharacter;
-        player.name = prompt(`¿Cuál es tu nombre ${newCharacter}`);
+        player.name = prompt(`¿Cuál es tu nombre ${newCharacter}?`);
 
     } else {
         alert('¿Qué clase de criatura es esa?');
@@ -124,20 +124,23 @@ function newStory(currentStages) {
 
 function newStage(stage, player) {
     let win = true;
-    alert(`Nivel: ${stage.level} Tu Vida: ${player.health}\n\n${stage.data.texto}\nNecesitas un ${stage.data.minimo_dado} para ganar\n\nTIRA EL DADO`);
+    alert(`Nivel: ${stage.level}\nTu Vida: ${player.health}\nPuntos: ${player.points}\n\n${stage.data.texto}\nNecesitas un ${stage.data.minimo_dado} para ganar\n\nTIRA EL DADO`);
     let numero = getRandomInt(1, 12);
     if (numero >= stage.data.minimo_dado) {
-        alert(`Has Sacado un ${numero} y ${stage.data.resultado_si_bien}`)
+        alert(`Has Sacado un ${numero} y ${stage.data.resultado_si_bien}\nGanas ${stage.data.puntos_si_gana} puntos\n\nVida: ${player.health} Puntos: ${parseInt(player.points) + parseInt(stage.data.puntos_si_gana)}`);
+        return win;
     } else {
-        alert(`Has Sacado un ${numero} y ${stage.data.resultado_si_mal}`)
+        win = false;
+        alert(`Has Sacado un ${numero} y ${stage.data.resultado_si_mal}\nPierdes ${stage.data.menos_vida_si_mal} de vida\n\nVida: ${player.health - parseInt(stage.data.menos_vida_si_mal)} Puntos: ${player.points}`);
+        return win;
     }
 }
 
 function results(player, state) {
-    var maxScore= cargarPuntuacionMax();
-    if(maxScore.points < player.points || maxScore.name == null) {
+    var maxScore = cargarPuntuacionMax();
+    if (maxScore.points < player.points || maxScore.name == null) {
         nuevaPuntuacionMax(player)
-        maxScore= cargarPuntuacionMax()
+        maxScore = cargarPuntuacionMax()
     };
     alert(`${state}\nVida: ${player.health}\nPuntos:${player.points}\n\nPuntuación Máxima: ${maxScore.name} ${maxScore.points}`);
 }
@@ -157,19 +160,19 @@ function cargarPuntuacionMax() {
     return bestScore;
 }
 
-
+maxScore = cargarPuntuacionMax();
 newPlayer(player);
 newStory(currentStages);
 currentStages.forEach(stage => {
     if (player.health <= 0) {
         results(player, "YOU LOSE");
     } else {
-        if (newStage(stage, player) === false) {
-            player.health - stage.data.menos_vida_si_mal;
+        if (newStage(stage, player) == false) {
+            player.health = player.health - stage.data.menos_vida_si_mal;
         } else {
-            player.points + stage.data.puntos_si_gana;
+            player.points = player.points + stage.data.puntos_si_gana;
         }
     }
 });
 
-results(player, "YOU WIN");
+if (player.health > 0) results(player, "YOU WIN");
