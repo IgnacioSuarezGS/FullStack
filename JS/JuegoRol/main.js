@@ -176,3 +176,4 @@ currentStages.forEach(stage => {
 });
 
 if (player.health > 0) results(player, "YOU WIN");
+if (player.health <= 0) results(player, "YOU LOSE");
