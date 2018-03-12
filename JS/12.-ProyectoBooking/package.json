@@ -1,0 +1,23 @@
+{
+  "name": "12.-proyectobooking",
+  "version": "1.0.0",
+  "description": "Es tu turno ! Usando las técnicas y métodos de ES6 o importando librerías como lodash deberás de realizar la siguiente práctica de la manera más eficiente posible y con buen código.",
+  "main": "main.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@github.com/fausrguez/FullStack.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/fausrguez/FullStack/issues"
+  },
+  "homepage": "https://github.com/fausrguez/FullStack#readme",
+  "devDependencies": {
+    "eslint-config-airbnb-base": "^12.1.0",
+    "eslint-plugin-import": "^2.9.0"
+  }
+}

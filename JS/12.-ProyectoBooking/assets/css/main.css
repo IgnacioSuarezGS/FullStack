@@ -1,0 +1,17 @@
+.main-grid,
+.wrapper-grid {
+    display: grid;
+}
+
+.wrapper-grid {
+    grid-template-columns: minmax(1em, 1fr) minmax(0, 110em) minmax(1em, 1fr);
+    height: 100vh;
+}
+
+.wrapper-grid > div {
+    grid-column: 2;
+}
+
+.main-grid {
+    grid-template-columns: minmax(1em,0.4fr) minmax(1em,1fr);
+}
