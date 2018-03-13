@@ -4,7 +4,7 @@
 }
 
 .wrapper-grid {
-    grid-template-columns: minmax(1em, 1fr) minmax(0, 110em) minmax(1em, 1fr);
+    grid-template-columns: minmax(1em, 1fr) minmax(0, 120em) minmax(1em, 1fr);
     height: 100vh;
 }
 
@@ -13,5 +13,23 @@
 }
 
 .main-grid {
-    grid-template-columns: minmax(1em,0.4fr) minmax(1em,1fr);
+    grid-template-columns: minmax(1em,0.3fr) minmax(1em,1fr);
+    grid-template-rows: 60px 1fr 60px;
+}
+
+nav {
+    grid-column: 2 span;
+}
+
+aside {
+    grid-row: 2/4
+}
+
+main {
+    grid-row: 2/3;
+}
+
+
+.card .card-title {
+    font-size: 1.2rem;
 }

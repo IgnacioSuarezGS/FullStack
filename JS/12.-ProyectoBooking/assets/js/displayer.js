@@ -1,21 +1,26 @@
 function showHotels() {
-    for(var i = 0; i < 10; i++){
-        $('#hotels').append(`
-        <div class="col s12 m3">
-            <div class="card">
-                <div class="card-image">
-                    <img src="http://res.cloudinary.com/faus6rguez/image/upload/v1518387511/b7478_takeoff_khe5lm.jpg">
-                    <span class="card-title">Card Title</span>
-                    <a class="btn-floating halfway-fab waves-effect waves-light red">
-                        <i class="material-icons">+</i>
-                    </a>
-                </div>
-                <div class="card-content">
-                    <p>I am a very simple card. I am good at containing small bits of information. I am convenient
-                        because I require little markup to use effectively.</p>
-                </div>
+  for (let i = 0; i < 16; i++) {
+    $('#hotels').append(`
+    <div class="col s12 m3">
+        <div class="card medium hoverable">
+            <div class="card-image waves-effect waves-block waves-light">
+                <img class="activator" src="${hotels[i]['Hotel Image'].src}" alt="${hotels[i]['Hotel Image'].alt}">
+            </div>
+            <div class="card-content">
+                <span class="card-title activator grey-text text-darken-4">
+                    <i class="material-icons right">more_vert</i>${hotels[i]['Hotel Name Url'].text}</span>
+                <a href="${hotels[i]['Hotel Name Url'].href}" class="waves-effect waves-light btn">
+                    <i class="material-icons left">euro_symbol</i>Reserva</a>
+            </div>
+            <div class="card-reveal">
+                <span class="card-title grey-text text-darken-4">
+                    <i class="material-icons right">close</i>${hotels[i]['Hotel Name Url'].text}</span>
+                <p>${hotels[i]['Hotel Description'].text}</p>
+                <a href="${hotels[i]['Hotel Name Url'].href}" class="waves-effect waves-light btn">
+                    <i class="material-icons left">euro_symbol</i>Reserva</a>
             </div>
         </div>
-        `)
-    }
+    </div>
+        `);
+  }
 }
