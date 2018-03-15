@@ -20,7 +20,6 @@ function showHotels() {
                     <i class="material-icons left">euro_symbol</i>Reserva</a>
             </div>
         </div>
-    </div>
-        `);
+    </div>`);
   }
 }
