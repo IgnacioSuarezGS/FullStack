@@ -18,7 +18,6 @@ updateHotels().then((updatedHotels) => {
   <ul class="pagination">
     <li class="disabled"><a href="#!"><i class="material-icons">chevron_left</i></a></li>
   `;
-  console.log(escribirPaginas);
   for (i = 0, page = 0; i < hotels.length; i += hotelsPerPage, page++) {
     const pageHotel = {
       page: 0,
@@ -28,13 +27,12 @@ updateHotels().then((updatedHotels) => {
     pageHotel.array = hotels.slice(i, i + hotelsPerPage);
     arraysHotels.push(pageHotel);
     escribirPaginas += `
-    <li class="waves-effect"><a href="#!">${pageHotel.page}</a></li>`;
+    <li id="page${pageHotel.page}" class="waves-effect" onclick="pageClicked(this)"><a>${pageHotel.page}</a></li>`;
   }
-  console.log(escribirPaginas);
   escribirPaginas += `
     <li class="waves-effect"><a href="#!"><i class="material-icons">chevron_right</i></a></li>
   </ul>
   `;
   $('#pages').append(escribirPaginas);
-  showHotels();
+  showHotels(1);
 });
