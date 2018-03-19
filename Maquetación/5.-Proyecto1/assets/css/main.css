@@ -1,105 +1,58 @@
+:root {}
+
 * {
-    margin: 0;
-    padding: 0;
     box-sizing: border-box;
+    height: 30vh;
 }
 
 html {
-    font-size: 14px;
+    font-size: 15px;
 }
 
 body {
+    margin: 0;
+    padding: 0;
     font-size: 1rem;
-}
-
-h2 {
-    text-transform: uppercase;
-}
-
-ul,
-ul > li,
-ul > li > a {
-    height: 100%;
-}
-
-ul > li, 
-ul > li > a {
-    display: inline-block;
+    font-family: 'Lato', Arial, Helvetica, sans-serif;
 }
 
 /* GRID */
+
+.wrapper-grid,
+.grid--two-cols,
+.grid--four-cols,
+nav ul {
+    display: grid;
+}
+
 .wrapper-grid {
-    display: grid;
-    grid-template-columns: [full-start] minmax(1em, 1fr) [main-start] minmax(0, 80em)[main-end] minmax(1em, 1fr) [full-end];
+    grid-template-columns: minmax(1em, 1fr) minmax(0, 75em) minmax(1em, 1fr);
 }
 
-.wrapper-grid > div {
-    grid-column: 2/3;
+.grid--two-cols {
+    grid-template-columns: repeat(2, 50%);
 }
 
-.grid-two-cols {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-    grid-gap: 10px;
-    align-items: center;
+.grid--four-cols {
+    grid-template-columns: repeat(4, 25%);
 }
 
-/* ESTRUCTURA */
-nav {
-    height: 100px;
+nav ul {
+    width: 100%;
+    grid-template-columns: repeat(12, calc(1170px/12));
 }
 
-header {
-    height: 900px;
-}
+/* STYLE */
 
-/* TODO-delete */
-section {
-    min-width: 20vh;
-}
-/*  */
-
-.menu--green {
-    height: 200px;
-}
-
-.partners {
-    height: 144px;
-}
-
-#map,
-.hero {
-    height: 500px;
-}
-
-.menu--pictures {
-    height: 280px;
-}
-
-footer {
-    height: 70px;
-}
-
-/* CLASES */
-.list--vertical > li,
-.list--vertical > li > a {
+nav li {
     display: block;
 }
 
-.list--vertical > a {
-    height: auto;
+.social-nav {
+    background-color: #21C2F8;
 }
 
-.btn {
-    display: inline-block;
-    min-width: 60px;
-    border-radius: 5px;
-    font-size: 1.2rem;
-    color: white;
-    padding: 5px 10px;
-    text-align: center;
-    text-transform: uppercase;
-    /* TODO-delete */
-    background-color: green;
-    /*  */
+header {
+    background-image: url("../pictures/lighthouse-2225445_960_720.jpg");
+    background-size: cover;
 }
