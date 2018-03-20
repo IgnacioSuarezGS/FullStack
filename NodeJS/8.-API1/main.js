@@ -20,7 +20,7 @@ var users = [{
         tweets: []
     },
     {
-        name: "Clementine Bauch",
+        name: "Clementine",
         email: "Nathan@yesenia.net",
         tweets: []
     },
@@ -133,6 +133,22 @@ app.post('/users', function (req, res) {
     }
 })
 
+app.delete('/users/:name', function (req, res) {
+    console.log(users);
+    let username = req.params.name;
+    users.splice(users.findIndex(user => user.name == username), 1);
+    res.send(users);
+})
+
 app.listen(3000, (error) => {
     console.log("Server listen in port 3000");
+});
+
+app.patch('/users/:name', function (req, res) {
+    let updateObject = req.body;
+    let username = req.params.name;
+    let id = users.findIndex(user => user.name == username);
+    let currentUser = users[id];
+
+    res.send(users);
 });
