@@ -10,21 +10,25 @@ const tweet = {
 var tweets = [];
 
 var users = [{
+        username: "1234567",
         name: "Leanne Graham",
         email: "Sincere@april.biz",
         tweets: []
     },
     {
+        username: "2345678",
         name: "Ervin Howell",
         email: "Shanna@melissa.tv",
         tweets: []
     },
     {
+        username: "3456789",
         name: "Clementine",
         email: "Nathan@yesenia.net",
         tweets: []
     },
     {
+        username: "4567891",
         name: "Chelsey Dietrich",
         email: "Lucio_Hettinger@annie.ca",
         tweets: []
@@ -33,12 +37,14 @@ var users = [{
 
 function addUser(newUser) {
     let user = {
+        username: "",
         name: "",
         email: "",
         tweets: []
     };
     let isValid = validateUser(newUser);
     if (isValid === true) {
+        user.username = newUser.username;
         user.name = newUser.name;
         user.email = newUser.email;
         users.push(user);
@@ -50,12 +56,15 @@ function addUser(newUser) {
 
 function validateUser(user) {
     user.email = user.email.toLowerCase();
-    let validName = validateName(user.name);
+    let validUsername = validateName(user.username, "username");
+    let validName = validateName(user.name, "name");
     let validEmail = validateEmail(user.email);
-    if (validName === true && validEmail === true) {
+    if (validName === true && validEmail === true && validUsername === true) {
         return true;
-    } else if (validName != true && validEmail != true) {
+    } else if (validName != true && validEmail != true && validUsername != true) {
         return "FATAL ERROR";
+    } else if (validUsername != true) {
+        return validUsername;
     } else if (validName != true) {
         return validName;
     } else if (validEmail != true) {
@@ -63,19 +72,19 @@ function validateUser(user) {
     }
 }
 
-function validateName(name) {
+function validateName(name, type) {
     if (name.length < 7) {
-        return 'No puedes tener un nombre con menos de 7 caracteres';
+        return `No puedes tener un ${type} con menos de 7 caracteres`;
     } else if (name.length > 60) {
-        return '¿Rejentas el Badulaque? ¿De dónde coño te sacaste el nombre ese de más de 60 caracteres?'
+        return `¿Rejentas el Badulaque? ¿De dónde coño te sacaste el ${type} ese de más de 60 caracteres?`
     }
     let result = true;
     users.forEach(user => {
-        if (user.name == name) {
-            result = "El usuario ya existe";
+        if (user[type] == name) {
+            result = `Ese ${type} ya existe`;
         }
     });
-        return result;
+    return result;
 }
 
 function validateEmail(email) {
@@ -99,7 +108,7 @@ function validateEmail(email) {
         }
         if (email.substring(at).length - 1 <= 0) {
             return 'No has indicado el nombre de tu proveedor de correo';
-            
+
         }
     } else {
         return "Tu email debe tener un @";
@@ -110,7 +119,7 @@ function validateEmail(email) {
             result = "El email ya existe";
         }
     });
-        return result;
+    return result;
 }
 
 app.use(express.json());
@@ -133,22 +142,47 @@ app.post('/users', function (req, res) {
     }
 })
 
-app.delete('/users/:name', function (req, res) {
-    console.log(users);
-    let username = req.params.name;
-    users.splice(users.findIndex(user => user.name == username), 1);
-    res.send(users);
-})
+app.delete('/users/:username', function (req, res) {
+    let username = req.params.username;
+    let whereIs = users.findIndex(user => user.username == username);
+    if (whereIs != -1) {
+        users.splice(whereIs, 1);
+        res.send(`El usuario ${username} ha sido borrado`);
+    } else {
+        res.send(`${username} no existe`)
+    }
+});
+
+app.patch('/users/:username', function (req, res) {
+    let errors = [];
+    let username = req.params.username;
+    let dataUser = req.body;
+    let whereIs = users.findIndex(user => user.username == username);
+    if (whereIs != -1) {
+        if (dataUser.name) {
+            let isValid = validateName(dataUser.name, "name");
+            if (isValid === true) {
+                users[whereIs].name = dataUser.name;
+            } else {
+                errors.push(isValid);
+            }
+        }
+        if (dataUser.email) {
+            let isValid = validateEmail(dataUser.email);
+            if (isValid === true) {
+                users[whereIs].email = dataUser.email;
+            } else {
+                errors.push(isValid);
+            }
+        }
+        if (!dataUser.name && !dataUser.email) {
+            res.send('No se ha pasado nigún parámetro válido');
+        } else {
+            res.json({users , errors});
+        }
+    }
+});
 
 app.listen(3000, (error) => {
     console.log("Server listen in port 3000");
-});
-
-app.patch('/users/:name', function (req, res) {
-    let updateObject = req.body;
-    let username = req.params.name;
-    let id = users.findIndex(user => user.name == username);
-    let currentUser = users[id];
-
-    res.send(users);
 });
