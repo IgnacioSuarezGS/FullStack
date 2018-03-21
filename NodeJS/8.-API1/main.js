@@ -1,39 +1,12 @@
+const fs = require('fs')
 const express = require('express')
 const app = express();
 const charsInTweet = 255;
 
-var tweets = [
-    {id: "hola"},
-    {id:"adios"}
-];
+var users = JSON.parse(fs.readFileSync('users.json'));
 
-var users = [{
-        username: "1234567",
-        name: "Leanne Graham",
-        email: "Sincere@april.biz",
-        tweets: [{
-            id: "hola"
-        }]
-    },
-    {
-        username: "2345678",
-        name: "Ervin Howell",
-        email: "Shanna@melissa.tv",
-        tweets: []
-    },
-    {
-        username: "3456789",
-        name: "Clementine",
-        email: "Nathan@yesenia.net",
-        tweets: []
-    },
-    {
-        username: "4567891",
-        name: "Chelsey Dietrich",
-        email: "Lucio_Hettinger@annie.ca",
-        tweets: []
-    }
-];
+
+var tweets = JSON.parse(fs.readFileSync('tweets.json'));
 
 function rightNow() {
     let d = new Date();
@@ -54,7 +27,8 @@ function addUser(newUser) {
         user.username = newUser.username;
         user.name = newUser.name;
         user.email = newUser.email;
-        users.push(user);
+        users.push(user)
+        fs.writeFileSync('users.json', JSON.stringify(users));
         return true;
     } else {
         return isValid;
@@ -83,6 +57,7 @@ function validateUser(user) {
 }
 
 function validateName(name, type) {
+    console.log(name);
     if (name.length < 7) {
         return `No puedes tener un ${type} con menos de 7 caracteres`;
     } else if (name.length > 60) {
@@ -178,7 +153,6 @@ app.get('/users', function (req, res) {
 });
 
 app.post('/users', (req, res) => {
-    console.log(req.body);
     let newUser = addUser(req.body);
     if (newUser === true) {
         res.json(users);
@@ -192,6 +166,9 @@ app.delete('/users/:username', function (req, res) {
     let whereIs = users.findIndex(user => user.username == username);
     if (whereIs != -1) {
         users.splice(whereIs, 1);
+        tweets = tweets.filter(tweet => tweet.owner != username);
+        fs.writeFileSync('users.json', JSON.stringify(users));
+        fs.writeFileSync('tweets.json', JSON.stringify(tweets));
         res.send(`El usuario ${username} ha sido borrado`);
     } else {
         res.send(`${username} no existe`)
@@ -223,11 +200,14 @@ app.patch('/users/:username', function (req, res) {
         if (!dataUser.name && !dataUser.email) {
             res.send('No se ha pasado nigún parámetro válido');
         } else {
+            fs.writeFileSync('users.json', JSON.stringify(users));
             res.json({
                 users,
                 errors
             });
         }
+    } else {
+        res.send('El username no existe');
     }
 });
 
@@ -238,7 +218,6 @@ app.get('/tweets', function (req, res) {
 
 app.get('/tweets/:id', (req, res) => {
     let id = req.params.id;
-    console.log(tweets.find(tweet => tweet.id == id));
     res.json(tweets.find(tweet => tweet.id == id));
 });
 
@@ -259,6 +238,8 @@ app.post('/tweets', function (req, res) {
         tweets.push(tweet);
         let tweetOwner = users.find(user => user.username == newTweet.owner);
         tweetOwner.tweets.push(tweet);
+        fs.writeFileSync('users.json', JSON.stringify(users));
+        fs.writeFileSync('tweets.json', JSON.stringify(tweets));
         res.json(tweets);
     } else {
         res.json(isValid);
@@ -268,13 +249,16 @@ app.post('/tweets', function (req, res) {
 app.delete('/tweets/:id', function (req, res) {
     let id = req.params.id;
     let whereIsInTweets = tweets.findIndex(tweet => tweet.id == id);
+    console.log(whereIsInTweets);
     if (whereIsInTweets != -1) {
-        tweets.splice(whereIs, 1);
+        tweets.splice(whereIsInTweets, 1);
         users.forEach(user => {
             if (user.tweets.findIndex(tweet => tweet.id === id) != -1) {
                 user.tweets.splice(user.tweets.findIndex(tweet => tweet.id === id), 1);
             }
         });
+        fs.writeFileSync('tweets.json', JSON.stringify(tweets));
+        fs.writeFileSync('users.json', JSON.stringify(users));
         res.send(`El tweet ha sido borrado`);
     } else {
         res.send(`El tweet no existe`)
