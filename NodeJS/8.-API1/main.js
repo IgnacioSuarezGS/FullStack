@@ -1,11 +1,6 @@
 const express = require('express')
 const app = express();
-const tweet = {
-    id: "",
-    text: "",
-    owner: "",
-    createdAt: 0
-}
+const charsInTweet = 255;
 
 var tweets = [];
 
@@ -13,7 +8,9 @@ var users = [{
         username: "1234567",
         name: "Leanne Graham",
         email: "Sincere@april.biz",
-        tweets: []
+        tweets: [{
+            id: "hola"
+        }]
     },
     {
         username: "2345678",
@@ -35,6 +32,12 @@ var users = [{
     }
 ];
 
+function rightNow() {
+    let d = new Date();
+    return (d.getTime());
+    // Date.now();
+}
+
 function addUser(newUser) {
     let user = {
         username: "",
@@ -42,6 +45,7 @@ function addUser(newUser) {
         email: "",
         tweets: []
     };
+    // newUser.username = toLowerCase(newUser.username);
     let isValid = validateUser(newUser);
     if (isValid === true) {
         user.username = newUser.username;
@@ -55,20 +59,23 @@ function addUser(newUser) {
 }
 
 function validateUser(user) {
-    user.email = user.email.toLowerCase();
-    let validUsername = validateName(user.username, "username");
-    let validName = validateName(user.name, "name");
-    let validEmail = validateEmail(user.email);
-    if (validName === true && validEmail === true && validUsername === true) {
-        return true;
-    } else if (validName != true && validEmail != true && validUsername != true) {
-        return "FATAL ERROR";
-    } else if (validUsername != true) {
-        return validUsername;
-    } else if (validName != true) {
-        return validName;
-    } else if (validEmail != true) {
-        return validEmail;
+    if (user.username && user.name && user.email) {
+        let validUsername = validateName(user.username, "username");
+        let validName = validateName(user.name, "name");
+        let validEmail = validateEmail(user.email);
+        if (validName === true && validEmail === true && validUsername === true) {
+            return true;
+        } else if (validName != true && validEmail != true && validUsername != true) {
+            return 'El Usuario ya existe';
+        } else if (validUsername != true) {
+            return validUsername;
+        } else if (validName != true) {
+            return validName;
+        } else if (validEmail != true) {
+            return validEmail;
+        }
+    } else {
+        return "NO HAS ESCRITO UN USUARIO VÁLIDO"
     }
 }
 
@@ -122,6 +129,41 @@ function validateEmail(email) {
     return result;
 }
 
+function validateTweet(tweet) {
+    let errors = [];
+    tweet.owner = tweet.owner.toLowerCase();
+    if (tweet.id) {
+        errors.push('No puede especificar una ID');
+    } else {
+        if (tweet.text) {
+            if (tweet.text.length > charsInTweet) {
+                errors.push(`Tu tweet no puede tener más de ${charsInTweet}`);
+            }
+        } else {
+            errors.push(`Tu tweet no tiene contenido`);
+        }
+        if (tweet.owner) {
+            let result = false;
+            users.forEach(user => {
+                if (user.username == tweet.owner) {
+                    result = true;
+                }
+            })
+            if (result === false) {
+                errors.push(`El usuario ${tweet.owner} no existe`);
+            }
+        } else {
+            errors.push('Tu tweet no pertenece a nadie')
+        }
+    }
+    if (errors.length > 0) {
+        return errors;
+    } else {
+        return true;
+    }
+}
+
+
 app.use(express.json());
 
 app.get('/', function (req, res) {
@@ -132,7 +174,7 @@ app.get('/users', function (req, res) {
     res.json(users);
 });
 
-app.post('/users', function (req, res) {
+app.post('/users', (req, res) => {
     console.log(req.body);
     let newUser = addUser(req.body);
     if (newUser === true) {
@@ -178,11 +220,54 @@ app.patch('/users/:username', function (req, res) {
         if (!dataUser.name && !dataUser.email) {
             res.send('No se ha pasado nigún parámetro válido');
         } else {
-            res.json({users , errors});
+            res.json({
+                users,
+                errors
+            });
         }
     }
 });
 
+
+app.get('/tweets', function (req, res) {
+    res.json(tweets);
+});
+
+app.post('/tweets', function (req, res) {
+    let newTweet = req.body;
+    let tweet = {
+        id: "",
+        text: "",
+        owner: "",
+        createdAt: 0
+    }
+    let isValid = validateTweet(newTweet);
+    if (isValid === true) {
+        tweet.id = Math.random().toString(36).substring(7);
+        tweet.text = newTweet.text;
+        tweet.owner = newTweet.owner;
+        tweet.createdAt = rightNow();
+        tweets.push(tweet);
+        let tweetOwner = users.find(user => user.username == newTweet.owner);
+        tweetOwner.tweets.push(tweet);
+        res.json(tweets);
+    } else {
+        res.json(isValid);
+    }
+});
+
+app.delete('/tweets/:id', function (req, res) {
+    let id = req.params.id;
+    let whereIsInTweets = tweets.findIndex(tweet => tweet.id == id);
+    users.forEach(user => {
+        if (user.tweets.findIndex(tweet => tweet.id === id) != -1) {
+            user.tweets.splice(user.tweets.findIndex(tweet => tweet.id === id), 1);
+        }
+    });
+});
+
+
 app.listen(3000, (error) => {
+    console.clear();
     console.log("Server listen in port 3000");
 });
