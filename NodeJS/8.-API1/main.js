@@ -2,7 +2,10 @@ const express = require('express')
 const app = express();
 const charsInTweet = 255;
 
-var tweets = [];
+var tweets = [
+    {id: "hola"},
+    {id:"adios"}
+];
 
 var users = [{
         username: "1234567",
@@ -233,6 +236,12 @@ app.get('/tweets', function (req, res) {
     res.json(tweets);
 });
 
+app.get('/tweets/:id', (req, res) => {
+    let id = req.params.id;
+    console.log(tweets.find(tweet => tweet.id == id));
+    res.json(tweets.find(tweet => tweet.id == id));
+});
+
 app.post('/tweets', function (req, res) {
     let newTweet = req.body;
     let tweet = {
@@ -259,13 +268,18 @@ app.post('/tweets', function (req, res) {
 app.delete('/tweets/:id', function (req, res) {
     let id = req.params.id;
     let whereIsInTweets = tweets.findIndex(tweet => tweet.id == id);
-    users.forEach(user => {
-        if (user.tweets.findIndex(tweet => tweet.id === id) != -1) {
-            user.tweets.splice(user.tweets.findIndex(tweet => tweet.id === id), 1);
-        }
-    });
+    if (whereIsInTweets != -1) {
+        tweets.splice(whereIs, 1);
+        users.forEach(user => {
+            if (user.tweets.findIndex(tweet => tweet.id === id) != -1) {
+                user.tweets.splice(user.tweets.findIndex(tweet => tweet.id === id), 1);
+            }
+        });
+        res.send(`El tweet ha sido borrado`);
+    } else {
+        res.send(`El tweet no existe`)
+    }
 });
-
 
 app.listen(3000, (error) => {
     console.clear();
